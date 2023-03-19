@@ -1,0 +1,112 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+    <h1>{{mensaje}}</h1>
+  
+    <h4>
+        Buscar Curso: Ingrese el numero de Camada para buscar el curso.
+    </h4>
+    <h4>
+        Buscar Profesor: Ingrese la profesion del Profesor.
+    </h4>
+    <h4>
+        Buscar Estudiante: Ingrese su nombre para saber si esta registrado. 
+    </h4>
+
+        <!-- Boton Buscar Camada -->
+
+    <form action="/AppCoder/buscar/" method="GET">
+
+        <input type="number" name="camada" id="camada">
+
+        <input type="submit" value="Buscar Curso">
+
+    </form>
+
+        <!-- Buscar Camada -->
+
+        {% if cursos %}
+
+        <p>Su curso es: {{camada}}</p>
+    
+        <ul>
+        {% for curso in cursos %}
+            <li> {{curso.nombre}} </li>
+            <li> {{curso.camada}} </li>
+        {% endfor %}
+    
+        </ul>
+    
+        {% else %}
+        <p>No hay datos con esa descripción.</p>
+    
+        {% endif %}
+    
+        <p style="color: red;">{{respuesta}}</p>
+
+        <!-- Boton Buscar Profesor-->
+
+    <form action="/AppCoder/buscarProfesor/" method="GET">
+
+        <input type="text" name="profesion" id="profesion">
+
+        <input type="submit" value="Buscar Profesor">
+
+    </form>
+
+        <!-- Buscar Profesores-->
+
+        {% if profesores %}
+
+        <p>Su profesor es: {{profesion}}</p>
+    
+        <ul>
+        {% for profesor in profesores %}
+            <li> {{profesor.nombre}} </li>
+            <li> {{profesor.profesion}} </li>
+        {% endfor %}
+    
+        </ul>
+    
+        {% else %}
+        <p>No hay datos con esa descripción.</p>
+    
+        {% endif %}
+    
+        <p style="color: red;">{{respuesta}}</p>
+
+        <!-- Boton Buscar Estudiantes-->
+
+    <form action="/AppCoder/buscarEstudiante/" method="GET">
+
+        <input type="text" name="nombre" id="nombre">
+
+        <input type="submit" value="Buscar Estudiante">
+
+    </form>
+
+         <!-- Buscar Estudiantes-->
+
+         {% if estudiantes %}
+
+         <p>Su estudiante es: {{nombre}}</p>
+     
+         <ul>
+         {% for estudiante in estudiantes %}
+             <li> {{estudiante.apellido}} </li>
+             <li> {{estudiante.nombre}} </li>
+         {% endfor %}
+     
+         </ul>
+     
+         {% else %}
+         <p>No hay datos con esa descripción.</p>
+     
+         {% endif %}
+     
+         <p style="color: red;">{{respuesta}}</p>
+ 
+{% endblock %}
